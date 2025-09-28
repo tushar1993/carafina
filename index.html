@@ -28,12 +28,37 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 40px;
-    align-items: start;
+    align-items: stretch;
+  }
+  
+  .form-container {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .quote-box {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    height: 660px;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
   }
   
   .header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
     grid-column: 1 / -1;
   }
   
@@ -45,19 +70,18 @@
     text-shadow: 0 2px 4px rgba(0,0,0,0.3);
   }
   
-  .header p {
-    font-size: 1.2rem;
-    color: rgba(255,255,255,0.9);
-    font-weight: 300;
+  
+  .button-row {
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+    flex-shrink: 0;
   }
   
-  .form-container {
-    background: white;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    backdrop-filter: blur(10px);
+  .button-row .btn {
+    margin-bottom: 0;
   }
+  
   
   .form-group {
     margin-bottom: 25px;
@@ -67,16 +91,6 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
-  }
-  
-  .form-row.single-input {
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-  
-  .form-row.single-input > div {
-    max-width: none;
-    width: 100%;
   }
   
   .disabled-field {
@@ -121,14 +135,6 @@
     transform: translateY(-2px);
   }
   
-  .input-icon {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #a0aec0;
-    font-size: 18px;
-  }
   
   .measurement-section {
     background: #f0f9ff;
@@ -140,11 +146,8 @@
 
   .measurement-section h3 {
     color: #0369a1;
-    margin-bottom: 20px;
-    font-size: 1.2rem;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
   }
 
   .input-hint {
@@ -154,46 +157,6 @@
     font-style: italic;
   }
 
-  .unit-options {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-top: 10px;
-  }
-  
-  @media (max-width: 768px) {
-    .unit-options {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .unit-options {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  .unit-option {
-    padding: 8px 16px;
-    border: 2px solid #e2e8f0;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    background: white;
-    font-size: 0.9rem;
-    font-weight: 500;
-  }
-
-  .unit-option:hover {
-    border-color: #0369a1;
-    background: #f0f9ff;
-  }
-
-  .unit-option.selected {
-    border-color: #0369a1;
-    background: #0369a1;
-    color: white;
-  }
 
   .error-message {
     color: #dc2626;
@@ -218,50 +181,6 @@
     margin-bottom: 25px;
   }
   
-  .rate-options {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 12px;
-    margin-bottom: 15px;
-    max-height: 400px;
-    overflow-y: auto;
-    padding: 10px;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    background: #fafbfc;
-  }
-  
-  .rate-option {
-    padding: 12px 16px;
-    border: 2px solid #e2e8f0;
-    border-radius: 8px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    background: white;
-  }
-  
-  .rate-option:hover {
-    border-color: #667eea;
-    transform: translateY(-2px);
-  }
-  
-  .rate-option.selected {
-    border-color: #667eea;
-    background: #667eea;
-    color: white;
-  }
-  
-  .rate-option h4 {
-    font-size: 0.9rem;
-    margin-bottom: 4px;
-  }
-  
-  .rate-option p {
-    font-size: 0.8rem;
-    opacity: 0.8;
-  }
-  
   .custom-rate {
     margin-top: 15px;
     display: none;
@@ -269,12 +188,6 @@
   
   .custom-rate.show {
     display: block;
-    animation: slideDown 0.3s ease;
-  }
-  
-  @keyframes slideDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
   }
   
   .btn {
@@ -315,13 +228,21 @@
     box-shadow: 0 8px 25px rgba(72, 187, 120, 0.6);
   }
   
-  .quote-box {
+  .unit-dropdown {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 16px;
+    background: #f8fafc;
+    transition: all 0.3s ease;
+  }
+  
+  .unit-dropdown:focus {
+    outline: none;
+    border-color: #667eea;
     background: white;
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
   }
   
   .quote-header {
@@ -344,15 +265,15 @@
   
   .quote-details {
     display: grid;
-    gap: 20px;
-    margin-bottom: 30px;
+    gap: 15px;
+    margin-bottom: 20px;
   }
   
   .detail-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
+    padding: 12px 16px;
     background: #f7fafc;
     border-radius: 10px;
     border-left: 4px solid #667eea;
@@ -361,46 +282,44 @@
   .detail-label {
     font-weight: 600;
     color: #4a5568;
+    font-size: 0.9rem;
   }
   
   .detail-value {
     font-weight: 700;
     color: #2d3748;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
   }
   
   .total-section {
     background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
     color: white;
-    padding: 30px;
-    border-radius: 15px;
+    padding: 15px;
+    border-radius: 10px;
     text-align: center;
-    margin-top: 20px;
+    margin-top: auto;
+    flex-shrink: 0;
+    margin-bottom: 0;
   }
   
   .total-section h4 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+    font-size: 1.2rem;
+    margin-bottom: 0;
     text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    display: inline;
   }
   
   .total-section p {
-    font-size: 1.2rem;
+    font-size: 0.8rem;
     opacity: 0.9;
+    display: inline;
+    margin-left: 10px;
   }
   
   .hidden {
     display: none;
   }
   
-  .fade-in {
-    animation: fadeIn 0.5s ease;
-  }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
   
   @media (max-width: 768px) {
     .container {
@@ -412,8 +331,9 @@
       grid-template-columns: 1fr;
     }
     
-    .rate-options {
-      grid-template-columns: 1fr 1fr;
+    
+    .button-row {
+      flex-direction: column;
     }
     
     .header h1 {
@@ -430,7 +350,6 @@
 <div class="container">
   <div class="header">
     <h1><i class="fas fa-calculator"></i> Carafina Quotation Generator</h1>
-    <p>Create accurate material cost estimates in seconds</p>
   </div>
 
   <div class="form-container">
@@ -439,9 +358,13 @@
       
       <div class="form-group">
         <label><i class="fas fa-cog"></i> Select Measurement Unit</label>
-        <div class="unit-options" id="unitOptions">
-          <!-- Units will be populated dynamically based on material type -->
-        </div>
+        <select class="unit-dropdown" id="unitDropdown">
+          <option value="ft">Feet (ft)</option>
+          <option value="m">Meters (m)</option>
+          <option value="cm">Centimeters (cm)</option>
+          <option value="mm">Millimeters (mm)</option>
+          <option value="running_ft">Running Feet (ft)</option>
+        </select>
       </div>
       
       <div class="form-group">
@@ -450,7 +373,6 @@
             <label><i class="fas fa-ruler-horizontal"></i> Length</label>
             <div class="input-wrapper">
               <input type="text" id="length" placeholder="Enter length" autocomplete="off">
-              <i class="fas fa-ruler input-icon"></i>
             </div>
             <div class="input-hint" id="lengthHint">Enter length in the selected unit</div>
           </div>
@@ -458,7 +380,6 @@
             <label><i class="fas fa-ruler-vertical"></i> Width</label>
             <div class="input-wrapper">
               <input type="text" id="width" placeholder="Enter width" autocomplete="off">
-              <i class="fas fa-ruler input-icon"></i>
             </div>
             <div class="input-hint" id="widthHint">Enter width in the selected unit</div>
           </div>
@@ -468,67 +389,27 @@
 
     <div class="rate-section">
       <label><i class="fas fa-tags"></i> Material Type & Rate</label>
-      <div class="rate-options">
-        <div class="rate-option" data-rate="ply_aluminium_glass" onclick="selectRate('ply_aluminium_glass')">
-          <h4>16mm Ply Aluminium & Glass</h4>
-          <p>₹4,500/sqft</p>
-        </div>
-        <div class="rate-option" data-rate="ply_laminate_12mm" onclick="selectRate('ply_laminate_12mm')">
-          <h4>12mm Ply Laminate</h4>
-          <p>₹1,800/sqft</p>
-        </div>
-        <div class="rate-option" data-rate="duco_beading" onclick="selectRate('duco_beading')">
-          <h4>Duco Beading</h4>
-          <p>₹3,500/running ft</p>
-        </div>
-        <div class="rate-option" data-rate="ply_cnc_design" onclick="selectRate('ply_cnc_design')">
-          <h4>16mm Ply CNC Design</h4>
-          <p>₹3,000/sqft</p>
-        </div>
-        <div class="rate-option" data-rate="ply_laminate_16mm" onclick="selectRate('ply_laminate_16mm')">
-          <h4>16mm Ply Laminate</h4>
-          <p>₹2,700/sqft</p>
-        </div>
-        <div class="rate-option" data-rate="ply_louver" onclick="selectRate('ply_louver')">
-          <h4>12mm Ply Louver</h4>
-          <p>₹2,100/sqft</p>
-        </div>
-        <div class="rate-option" data-rate="ply_mdf" onclick="selectRate('ply_mdf')">
-          <h4>12mm Ply MDF</h4>
-          <p>₹1,500/sqft</p>
-        </div>
-        <div class="rate-option" data-rate="ply_12mm" onclick="selectRate('ply_12mm')">
-          <h4>12mm Ply</h4>
-          <p>₹2,100/sqft</p>
-        </div>
-        <div class="rate-option" data-rate="fluted_panel" onclick="selectRate('fluted_panel')">
-          <h4>Fluted Panel</h4>
-          <p>₹2,100/sqft</p>
-        </div>
-        <div class="rate-option" data-rate="marine_ply_acrylic" onclick="selectRate('marine_ply_acrylic')">
-          <h4>16mm Marine Ply Acrylic</h4>
-          <p>₹3,500/sqft</p>
-        </div>
-        <div class="rate-option" data-rate="marine_ply_rehau" onclick="selectRate('marine_ply_rehau')">
-          <h4>16mm Marine Ply Rehau</h4>
-          <p>₹3,500/sqft</p>
-        </div>
-        <div class="rate-option" data-rate="marine_ply_laminate" onclick="selectRate('marine_ply_laminate')">
-          <h4>16mm Marine Ply Laminate</h4>
-          <p>₹3,000/sqft</p>
-        </div>
-        <div class="rate-option" data-rate="custom" onclick="selectRate('custom')">
-          <h4>Custom Rate</h4>
-          <p>Set your own</p>
-        </div>
-      </div>
+      <select class="unit-dropdown" id="materialDropdown">
+        <option value="ply_aluminium_glass">16mm Ply Aluminium & Glass - ₹4,500/sqft</option>
+        <option value="ply_laminate_12mm">12mm Ply Laminate - ₹1,800/sqft</option>
+        <option value="duco_beading">Duco Beading - ₹3,500/running ft</option>
+        <option value="ply_cnc_design">16mm Ply CNC Design - ₹3,000/sqft</option>
+        <option value="ply_laminate_16mm">16mm Ply Laminate - ₹2,700/sqft</option>
+        <option value="ply_louver">12mm Ply Louver - ₹2,100/sqft</option>
+        <option value="ply_mdf">12mm Ply MDF - ₹1,500/sqft</option>
+        <option value="ply_12mm">12mm Ply - ₹2,100/sqft</option>
+        <option value="fluted_panel">Fluted Panel - ₹2,100/sqft</option>
+        <option value="marine_ply_acrylic">16mm Marine Ply Acrylic - ₹3,500/sqft</option>
+        <option value="marine_ply_rehau">16mm Marine Ply Rehau - ₹3,500/sqft</option>
+        <option value="marine_ply_laminate">16mm Marine Ply Laminate - ₹3,000/sqft</option>
+        <option value="custom">Custom Rate - Set your own</option>
+      </select>
       <div class="custom-rate" id="customRateInput">
         <div class="form-row">
           <div>
             <label><i class="fas fa-rupee-sign"></i> Custom Rate</label>
             <div class="input-wrapper">
               <input type="number" id="customRate" placeholder="Enter custom rate" step="0.01">
-              <i class="fas fa-rupee-sign input-icon"></i>
             </div>
           </div>
           <div>
@@ -539,28 +420,26 @@
                 <option value="sqm">Per Square Meter (sq.m)</option>
                 <option value="running_ft">Per Running Feet (ft)</option>
               </select>
-              <i class="fas fa-chevron-down input-icon"></i>
             </div>
           </div>
         </div>
-        <div>
-          <label><i class="fas fa-tag"></i> Material Name</label>
-          <div class="input-wrapper">
-            <input type="text" id="customMaterialName" placeholder="Enter material name">
-            <i class="fas fa-cube input-icon"></i>
+        <div class="form-row">
+          <div>
+            <label><i class="fas fa-tag"></i> Material Name</label>
+            <div class="input-wrapper">
+              <input type="text" id="customMaterialName" placeholder="Enter material name">
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <button class="btn btn-primary" onclick="generateQuote()">
-      <i class="fas fa-calculator"></i>
-      Generate Quotation
-    </button>
-    <button class="btn btn-secondary" onclick="downloadPDF()">
-      <i class="fas fa-download"></i>
-      Download as PDF
-    </button>
+    <div class="button-row">
+      <button class="btn btn-primary" onclick="generateQuote()">
+        <i class="fas fa-calculator"></i>
+        Generate Quotation
+      </button>
+    </div>
   </div>
 
   <div class="quote-box hidden" id="quoteBox">
@@ -573,8 +452,6 @@
   </div>
 </div>
 
-<!-- jsPDF CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script>
   // Material rates mapping
@@ -620,18 +497,22 @@
       clearErrors('width');
       validateMeasurement('width');
     });
+    
+    // Add dropdown event listeners
+    document.getElementById('unitDropdown').addEventListener('change', function() {
+      selectUnit(this.value);
+    });
+    
+    document.getElementById('materialDropdown').addEventListener('change', function() {
+      selectRate(this.value);
+    });
   });
 
   function selectRate(rate) {
     selectedRate = rate;
     
-    // Remove selected class from all options
-    document.querySelectorAll('.rate-option').forEach(option => {
-      option.classList.remove('selected');
-    });
-    
-    // Add selected class to clicked option
-    document.querySelector(`[data-rate="${rate}"]`).classList.add('selected');
+    // Update dropdown value
+    document.getElementById('materialDropdown').value = rate;
     
     // Show/hide custom rate input
     const customRateInput = document.getElementById('customRateInput');
@@ -646,46 +527,17 @@
   }
 
   function updateUnitOptions() {
-    const unitOptionsContainer = document.getElementById('unitOptions');
+    const unitDropdown = document.getElementById('unitDropdown');
     const materialInfo = selectedRate === 'custom' ? 
       { unit: document.getElementById('customRateUnit')?.value || 'sqft' } : 
       rateMapping[selectedRate];
     
-    let availableUnits = [];
-    
-    if (materialInfo.unit === 'running_ft') {
-      availableUnits = [
-        { value: 'ft', label: 'Running Feet (ft)', icon: '📏', examples: '5ft, 5\'10", 5ft 10in', type: 'linear' },
-        { value: 'm', label: 'Running Meters (m)', icon: '📐', examples: '2.5m, 1.8m', type: 'linear' }
-      ];
-    } else {
-      availableUnits = [
-        { value: 'ft', label: 'Square Feet (sq.ft)', icon: '📐', examples: '5ft, 5\'10", 5ft 10in', type: 'area' },
-        { value: 'm', label: 'Square Meters (sq.m)', icon: '📏', examples: '2.5m, 1.8m', type: 'area' },
-        { value: 'cm', label: 'Square Centimeters (sq.cm)', icon: '📏', examples: '150cm, 120cm', type: 'area' },
-        { value: 'mm', label: 'Square Millimeters (sq.mm)', icon: '📏', examples: '1500mm, 1200mm', type: 'area' },
-        { value: 'running_ft', label: 'Running Feet (ft)', icon: '📏', examples: '5ft, 5\'10", 5ft 10in', type: 'linear' }
-      ];
-    }
-    
-    unitOptionsContainer.innerHTML = availableUnits.map(unit => 
-      `<div class="unit-option ${unit.value === selectedUnit ? 'selected' : ''}" 
-            onclick="selectUnit('${unit.value}')" 
-            title="Examples: ${unit.examples} (${unit.type === 'linear' ? 'Linear measurement' : 'Area measurement'})"
-            data-type="${unit.type}">
-         ${unit.icon} ${unit.label}
-       </div>`
-    ).join('');
+    // Set the selected value in dropdown
+    unitDropdown.value = selectedUnit;
   }
 
   function selectUnit(unit) {
     selectedUnit = unit;
-    
-    // Update selected class
-    document.querySelectorAll('.unit-option').forEach(option => {
-      option.classList.remove('selected');
-    });
-    event.target.classList.add('selected');
     
     // Update placeholders and hints based on selected unit
     updateInputPlaceholders();
@@ -711,7 +563,7 @@
     } else {
       // Enable width for area measurements
       widthContainer.classList.remove('disabled-field');
-      widthHint.textContent = `Enter width in ${selectedUnit === 'ft' ? 'square feet' : selectedUnit === 'm' ? 'square meters' : selectedUnit === 'cm' ? 'square centimeters' : 'square millimeters'}`;
+      widthHint.textContent = `Enter width in ${selectedUnit === 'ft' ? 'feet' : selectedUnit === 'm' ? 'meters' : selectedUnit === 'cm' ? 'centimeters' : 'millimeters'}`;
     }
   }
 
@@ -730,10 +582,10 @@
     };
     
     const unitLabels = {
-      'ft': 'square feet',
-      'm': 'square meters',
-      'cm': 'square centimeters',
-      'mm': 'square millimeters',
+      'ft': 'feet',
+      'm': 'meters',
+      'cm': 'centimeters',
+      'mm': 'millimeters',
       'running_ft': 'running feet'
     };
     
@@ -851,10 +703,10 @@
       hint.style.color = '#6c757d';
     } else {
       const unitLabels = {
-        'ft': 'square feet',
-        'm': 'square meters',
-        'cm': 'square centimeters',
-        'mm': 'square millimeters',
+        'ft': 'feet',
+        'm': 'meters',
+        'cm': 'centimeters',
+        'mm': 'millimeters',
         'running_ft': 'running feet'
       };
       hint.textContent = `Enter ${field} in ${unitLabels[selectedUnit]}`;
@@ -903,6 +755,7 @@
     const conversions = {
       "mm": value / 304.8,      // 1 foot = 304.8 mm
       "cm": value / 30.48,      // 1 foot = 30.48 cm
+      "m": value * 3.28084,     // 1 meter = 3.28084 feet
       "in": value / 12,         // 1 foot = 12 inches
       "ft": value,              // already in feet
       "running_ft": value       // running feet are the same as regular feet
@@ -915,10 +768,31 @@
     const conversions = {
       "mm": value / 1000,       // 1 meter = 1000 mm
       "cm": value / 100,        // 1 meter = 100 cm
+      "m": value,               // already in meters
       "in": value * 0.0254,     // 1 inch = 0.0254 meters
       "ft": value * 0.3048      // 1 foot = 0.3048 meters
     };
     return conversions[unit] || value;
+  }
+
+  // Helper function to determine if conversion display is needed
+  function getConversionDisplay(inputUnit, materialUnit, convertedValue) {
+    let targetUnit;
+    if (materialUnit === 'running_ft') {
+      targetUnit = 'ft';
+    } else if (materialUnit === 'sqm') {
+      targetUnit = 'm';
+    } else if (materialUnit === 'sqft') {
+      targetUnit = 'ft';
+    } else {
+      targetUnit = 'ft'; // Default to feet
+    }
+    
+    // Only show conversion if input unit is different from target unit
+    if (inputUnit !== targetUnit) {
+      return ` (${convertedValue.toFixed(2)} ${targetUnit})`;
+    }
+    return '';
   }
 
   function generateQuote() {
@@ -974,45 +848,53 @@
       materialInfo = rateMapping[selectedRate];
     }
     
-    // Smart unit validation
-    const isLinearUnit = selectedUnit === 'running_ft' || selectedUnit === 'm';
-    const isAreaUnit = ['ft', 'm', 'cm', 'mm'].includes(selectedUnit) && selectedUnit !== 'running_ft';
+    // Smart unit validation - all units are now linear, but we need to check if material requires area calculation
+    const isLinearMaterial = materialInfo.unit === 'running_ft';
+    const isAreaMaterial = materialInfo.unit === 'sqft' || materialInfo.unit === 'sqm';
     
-    if (materialInfo.unit === 'running_ft' && !isLinearUnit) {
-      alert(`❌ Unit Mismatch!\n\nThis material (${materialInfo.name}) is priced per running foot, but you selected an area unit (${selectedUnit}).\n\nPlease select "Running Feet" or "Running Meters" for linear measurements.`);
+    if (isLinearMaterial && selectedUnit === 'running_ft') {
+      // This is correct - linear material with linear unit
+    } else if (isLinearMaterial && selectedUnit !== 'running_ft') {
+      // Linear material but non-linear input unit
+      alert(`❌ Unit Mismatch!\n\nThis material (${materialInfo.name}) is priced per running foot, but you selected an area unit (${selectedUnit}).\n\nPlease select "Running Feet" for linear measurements.`);
       return;
+    } else if (isAreaMaterial) {
+      // Area materials need both length and width (except for running_ft unit which is handled separately)
+      if (selectedUnit === 'running_ft') {
+        alert(`❌ Unit Mismatch!\n\nThis material (${materialInfo.name}) is priced per square foot, but you selected a linear unit (${selectedUnit}).\n\nPlease select a linear unit like "Feet", "Meters", "Centimeters", or "Millimeters" for area measurements.`);
+        return;
+      }
     }
     
-    if (materialInfo.unit !== 'running_ft' && isLinearUnit) {
-      alert(`❌ Unit Mismatch!\n\nThis material (${materialInfo.name}) is priced per square foot, but you selected a linear unit (${selectedUnit}).\n\nPlease select an area unit like "Square Feet" or "Square Meters" for area measurements.`);
-      return;
-    }
-    
-    // Convert to feet for calculations
-    const lengthFt = convertToFeet(lengthInUnit, selectedUnit);
-    const widthFt = convertToFeet(widthInUnit, selectedUnit);
-
-    // Calculate areas
-    const areaSqft = lengthFt * widthFt;
-    const areaSqm = areaSqft / 10.7639; // Convert to square meters
-
-    let cost, calculationMethod, ratePerSqft;
+    // Smart unit conversion - only convert when necessary
+    let lengthInTargetUnit, widthInTargetUnit, areaInTargetUnit, cost, calculationMethod;
     
     if (materialInfo.unit === "running_ft") {
-      // For running feet materials (like beading), use length only
-      cost = lengthFt * materialInfo.rate;
-      calculationMethod = `Length: ${lengthFt.toFixed(2)} ft × ₹${materialInfo.rate.toLocaleString()}/ft`;
-      ratePerSqft = materialInfo.rate; // For display purposes
+      // For running feet materials, convert to feet
+      lengthInTargetUnit = convertToFeet(lengthInUnit, selectedUnit);
+      cost = lengthInTargetUnit * materialInfo.rate;
+      calculationMethod = `Length: ${lengthInTargetUnit.toFixed(2)} ft × ₹${materialInfo.rate.toLocaleString()}/ft`;
     } else if (materialInfo.unit === "sqm") {
-      // Convert sq.m rate to sq.ft rate for calculation
-      ratePerSqft = materialInfo.rate * 10.7639; // 1 sq.m = 10.7639 sq.ft
-      cost = areaSqft * ratePerSqft;
-      calculationMethod = `Area: ${areaSqft.toFixed(2)} sq.ft × ₹${ratePerSqft.toFixed(2)}/sq.ft (converted from ₹${materialInfo.rate.toLocaleString()}/sq.m)`;
+      // For sq.m materials, convert to meters
+      lengthInTargetUnit = convertToMeters(lengthInUnit, selectedUnit);
+      widthInTargetUnit = convertToMeters(widthInUnit, selectedUnit);
+      areaInTargetUnit = lengthInTargetUnit * widthInTargetUnit;
+      cost = areaInTargetUnit * materialInfo.rate;
+      calculationMethod = `Area: ${areaInTargetUnit.toFixed(2)} sq.m × ₹${materialInfo.rate.toLocaleString()}/sq.m`;
+    } else if (materialInfo.unit === "sqft") {
+      // For sq.ft materials, convert to feet
+      lengthInTargetUnit = convertToFeet(lengthInUnit, selectedUnit);
+      widthInTargetUnit = convertToFeet(widthInUnit, selectedUnit);
+      areaInTargetUnit = lengthInTargetUnit * widthInTargetUnit;
+      cost = areaInTargetUnit * materialInfo.rate;
+      calculationMethod = `Area: ${areaInTargetUnit.toFixed(2)} sq.ft × ₹${materialInfo.rate.toLocaleString()}/sq.ft`;
     } else {
-      // For square feet materials
-      cost = areaSqft * materialInfo.rate;
-      calculationMethod = `Area: ${areaSqft.toFixed(2)} sq.ft × ₹${materialInfo.rate.toLocaleString()}/sq.ft`;
-      ratePerSqft = materialInfo.rate;
+      // Default case - treat as sq.ft
+      lengthInTargetUnit = convertToFeet(lengthInUnit, selectedUnit);
+      widthInTargetUnit = convertToFeet(widthInUnit, selectedUnit);
+      areaInTargetUnit = lengthInTargetUnit * widthInTargetUnit;
+      cost = areaInTargetUnit * materialInfo.rate;
+      calculationMethod = `Area: ${areaInTargetUnit.toFixed(2)} sq.ft × ₹${materialInfo.rate.toLocaleString()}/sq.ft`;
     }
 
     // Update quote details
@@ -1024,28 +906,23 @@
       </div>
       <div class="detail-row">
         <span class="detail-label"><i class="fas fa-ruler-horizontal"></i> Length</span>
-        <span class="detail-value">${lengthInUnit.toFixed(2)} ${selectedUnit}</span>
+        <span class="detail-value">${lengthInUnit.toFixed(2)} ${selectedUnit}${getConversionDisplay(selectedUnit, materialInfo.unit, lengthInTargetUnit)}</span>
       </div>
       ${selectedUnit !== 'running_ft' ? `
       <div class="detail-row">
         <span class="detail-label"><i class="fas fa-ruler-vertical"></i> Width</span>
-        <span class="detail-value">${widthInUnit.toFixed(2)} ${selectedUnit}</span>
+        <span class="detail-value">${widthInUnit.toFixed(2)} ${selectedUnit}${getConversionDisplay(selectedUnit, materialInfo.unit, widthInTargetUnit)}</span>
       </div>
       ` : ''}
       ${materialInfo.unit === 'running_ft' ? `
       <div class="detail-row">
-        <span class="detail-label"><i class="fas fa-ruler-combined"></i> Length</span>
-        <span class="detail-value">${lengthFt.toFixed(2)} ft</span>
-      </div>
-      ` : materialInfo.unit === 'sqm' ? `
-      <div class="detail-row">
-        <span class="detail-label"><i class="fas fa-expand-arrows-alt"></i> Area</span>
-        <span class="detail-value">${areaSqm.toFixed(2)} sq.m</span>
+        <span class="detail-label"><i class="fas fa-ruler-combined"></i> Total Length</span>
+        <span class="detail-value">${lengthInTargetUnit.toFixed(2)} ft</span>
       </div>
       ` : `
       <div class="detail-row">
         <span class="detail-label"><i class="fas fa-expand-arrows-alt"></i> Area</span>
-        <span class="detail-value">${areaSqft.toFixed(2)} sq.ft</span>
+        <span class="detail-value">${areaInTargetUnit.toFixed(2)} ${materialInfo.unit === 'sqm' ? 'sq.m' : 'sq.ft'}</span>
       </div>
       `}
       <div class="detail-row">
@@ -1055,13 +932,6 @@
       <div class="detail-row">
         <span class="detail-label"><i class="fas fa-calculator"></i> Calculation</span>
         <span class="detail-value">${calculationMethod}</span>
-      </div>
-      <div class="detail-row">
-        <span class="detail-label"><i class="fas fa-info-circle"></i> Input</span>
-        <span class="detail-value">
-          Length: ${lengthInput}${selectedUnit !== 'running_ft' ? `<br>Width: ${widthInput}` : ''}<br>
-          <small style="color: #64748b;">(${selectedUnit})</small>
-        </span>
       </div>
     `;
 
@@ -1076,55 +946,10 @@
     const quoteBox = document.getElementById('quoteBox');
     quoteBox.classList.remove('hidden');
     quoteBox.classList.add('fade-in');
+    
   }
 
-  function downloadPDF() {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
 
-    const quoteBox = document.getElementById("quoteBox");
-    if (quoteBox.classList.contains('hidden')) {
-      alert("Please generate a quotation first!");
-      return;
-    }
-
-    // Add company header
-    doc.setFontSize(20);
-    doc.text("Professional Material Quotation", 20, 20);
-    
-    doc.setFontSize(12);
-    doc.text("Generated on: " + new Date().toLocaleDateString('en-IN'), 20, 30);
-    
-    // Add line
-    doc.line(20, 35, 190, 35);
-    
-    // Add quote details
-    let yPosition = 50;
-    const details = quoteBox.querySelectorAll('.detail-row');
-    
-    details.forEach(detail => {
-      const label = detail.querySelector('.detail-label').textContent;
-      const value = detail.querySelector('.detail-value').textContent;
-      
-      doc.setFontSize(11);
-      doc.text(label + ":", 20, yPosition);
-      doc.text(value, 120, yPosition);
-      yPosition += 8;
-    });
-    
-    // Add total
-    yPosition += 10;
-    doc.setFontSize(16);
-    doc.text("TOTAL COST:", 20, yPosition);
-    const totalValue = quoteBox.querySelector('.total-section h4').textContent;
-    doc.text(totalValue, 120, yPosition);
-    
-    // Add footer
-    doc.setFontSize(10);
-    doc.text("Thank you for your business!", 20, 280);
-    
-    doc.save("material_quotation.pdf");
-  }
 </script>
 </body>
 </html>
